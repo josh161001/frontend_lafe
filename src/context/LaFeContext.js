@@ -6,6 +6,7 @@ const LaFeProvider = (props) => {
   const [auth, setAuth] = useState({
     access_token: localStorage.getItem("access_token") || "",
     auth: false,
+    rol: "",
   });
 
   return (

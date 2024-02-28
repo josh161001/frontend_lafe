@@ -4,38 +4,38 @@ import Swal from "sweetalert2";
 import url_axios from "../../../config/Axios";
 import { LaFeContext } from "../../../context/LaFeContext";
 
-const TablaUsuarios = (props) => {
+const TablaCategorias = (props) => {
   const [auth, setAuth] = useContext(LaFeContext);
-  const [usuarios, guardarUsuarios] = useState([]);
+  const [categorias, guardarCategorias] = useState([]);
   const [acceso, setAcceso] = useState(true);
   const [filtroNombre, setFiltroNombre] = useState("");
 
   const navigate = useNavigate();
   useEffect(() => {
     if (auth.access_token !== "") {
-      const consultarUsuarios = async () => {
+      const consultarCategorias = async () => {
         try {
-          const respuesta = await url_axios.get("/users", {
+          const respuesta = await url_axios.get("/categories", {
             headers: {
               Authorization: `Bearer ${auth.access_token}`,
             },
           });
 
-          guardarUsuarios(respuesta.data.data);
+          guardarCategorias(respuesta.data.data);
         } catch (error) {
           setAcceso(false);
         }
       };
-      consultarUsuarios();
+      consultarCategorias();
     } else {
       navigate("/");
     }
-  }, [auth.access_token, navigate, usuarios]);
+  }, [auth.access_token, navigate, categorias]);
 
-  const eliminarUsuario = async (id) => {
+  const eliminarCategoria = async (id) => {
     Swal.fire({
       title: "¿Estás seguro?",
-      text: "Ya no se podrá recuperar el usuario",
+      text: "Ya no se podrá recuperar la categoria eliminada!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -44,7 +44,7 @@ const TablaUsuarios = (props) => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        url_axios.delete(`/users/${id}`, {
+        url_axios.delete(`/categories/${id}`, {
           headers: {
             Authorization: `Bearer ${auth.access_token}`,
           },
@@ -53,8 +53,8 @@ const TablaUsuarios = (props) => {
     });
   };
 
-  const fitrarUsuarios = Object.values(usuarios).filter((usuario) => {
-    return usuario.nombre.toLowerCase().includes(filtroNombre.toLowerCase());
+  const filtrarCategorias = Object.values(categorias).filter((categoria) => {
+    return categoria.nombre.toLowerCase().includes(filtroNombre.toLowerCase());
   });
 
   // Retornar el mensaje "no tienes acceso" si no es ADMIN
@@ -100,18 +100,6 @@ const TablaUsuarios = (props) => {
                 <th scope="col" className="px-6 py-3 border-r ">
                   Nombre
                 </th>
-                <th scope="col" className="px-6 py-3 border-r ">
-                  Correo
-                </th>
-                <th scope="col" className="px-6 py-3 border-r ">
-                  Dirección
-                </th>
-                <th scope="col" className="px-6 py-3 border-r ">
-                  Telefono
-                </th>
-                <th scope="col" className="px-6 py-3 border-r ">
-                  Roles
-                </th>
 
                 <th scope="col" className="px-6 py-3">
                   Acción
@@ -119,34 +107,21 @@ const TablaUsuarios = (props) => {
               </tr>
             </thead>
             <tbody>
-              {fitrarUsuarios.map((usuario, index) => (
+              {filtrarCategorias.map((categoria, index) => (
                 <tr
-                  key={usuario.id}
+                  key={categoria.id}
                   index={index}
                   className=" border-b  bg-principal  border-secundario hover:bg-secundario cursor-pointer"
                 >
                   <td className="w-4 p-4"></td>
-                  <td className="px-6 py-4  text-white border-r  whitespace-nowrap ">
-                    {usuario.nombre}
-                  </td>
-                  <td className="px-6 py-4  text-white border-r  whitespace-nowrap ">
-                    {usuario.email}
-                  </td>
-                  <td className="px-6 py-4  text-white border-r  whitespace-nowrap ">
-                    {usuario.direccion}
-                  </td>
-                  <td className="px-6 py-4  text-white border-r  whitespace-nowrap ">
-                    {usuario.telefono}
+                  <td className="px-6 py-4  text-white border-r text-center  whitespace-nowrap ">
+                    {categoria.nombre}
                   </td>
 
-                  <td className="px-6 py-4  text-white border-r  whitespace-nowrap ">
-                    {usuario.roles.join(", ")}
-                  </td>
-
-                  <td className=" items-center flex  px-4 py-4 space-x-3">
+                  <td className=" flex items-center px-4 py-4 space-x-3">
                     {/* editar */}
                     <Link
-                      to={`/editar-usuario/${usuario.id}`}
+                      to={`/editar-categoria/${categoria.id}`}
                       className="inline-block px-1 py-1 rounded-lg bg-blue-900   text-red-600 dark:text-blue-500 hover:underline"
                     >
                       <svg
@@ -165,25 +140,23 @@ const TablaUsuarios = (props) => {
                       </svg>
                     </Link>
                     {/* eliminar */}
-                    {!usuario.roles.includes("ADMIN") && (
-                      <button
-                        onClick={() => eliminarUsuario(usuario.id)}
-                        className="inline-block px-1 py-1 rounded-lg bg-red-900  text-red-600 dark:text-red-500 hover:underline"
+                    <button
+                      onClick={() => eliminarCategoria(categoria.id)}
+                      className="inline-block px-1 py-1 rounded-lg bg-red-900  text-red-600 dark:text-red-500 hover:underline"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-5 h-5"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          className="w-5 h-5"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                    )}
+                        <path
+                          fillRule="evenodd"
+                          d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -195,4 +168,4 @@ const TablaUsuarios = (props) => {
   );
 };
 
-export default TablaUsuarios;
+export default TablaCategorias;

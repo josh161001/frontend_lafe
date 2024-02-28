@@ -1,5 +1,6 @@
 import React from "react";
 import MenuHamburguesa from "../../components/layout/system/MenuHamburguesa";
+import TablaCategorias from "../../components/layout/system/TablaCategorias";
 
 const Categorias = () => {
   return (
@@ -14,7 +15,7 @@ const Categorias = () => {
             </h2>
           </div>
           <div className="relative overflow-x-auto sm:rounded-lg">
-            <h1>Categorias</h1>
+            <TablaCategorias />
           </div>
         </div>
       </div>

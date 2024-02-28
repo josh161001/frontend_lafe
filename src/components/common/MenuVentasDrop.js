@@ -20,13 +20,13 @@ const MenuVentasDrop = ({ name, options }) => {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
-          class="w-6 h-6"
+          className="w-6 h-6"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
           />
         </svg>
@@ -59,7 +59,7 @@ const MenuVentasDrop = ({ name, options }) => {
               className={({ isActive }) =>
                 `flex items-center w-full ${
                   isActive ? "bg-secundario" : ""
-                } p-2 transition duration-75 rounded-lg pl-11 group hover:bg-secundario text-white`
+                } p-2 transition duration-75 rounded-lg pl-11 group hover:bg-secundario text-sm text-white`
               }
             >
               {option.name}

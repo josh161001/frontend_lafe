@@ -15,11 +15,36 @@ const MenuHamburguesa = () => {
   const [auth, setAuth] = useContext(LaFeContext);
   const [usuarios, guardarUsuarios] = useState("");
 
-  const usuariosDrop = [{ name: "Usuarios", to: "/usuarios" }];
+  const usuariosDrop = [
+    { name: "Usuarios", to: "/usuarios" },
+    {
+      name: "Agregar Usuario",
+      to: "/agregar-usuario",
+    },
+  ];
+
   const ventasDrop = [{ name: "Ventas", to: "/Ventas" }];
-  const productosDrop = [{ name: "Productos", to: "/productos" }];
-  const categoriasDrop = [{ name: "Categorias", to: "/categorias" }];
-  const asistenciasDrop = [{ name: "Asistencias", to: "/asistencias" }];
+  const productosDrop = [
+    { name: "Productos", to: "/productos" },
+    {
+      name: "Agregar Producto",
+      to: "/agregar-producto",
+    },
+  ];
+  const categoriasDrop = [
+    { name: "Categorias", to: "/categorias" },
+    {
+      name: "Agregar Categoria",
+      to: "/agregar-categoria",
+    },
+  ];
+  const asistenciasDrop = [
+    { name: "Asistencias", to: "/asistencias" },
+    {
+      name: "Agregar Asistencia",
+      to: "/agregar-asistencia",
+    },
+  ];
 
   const navigate = useNavigate();
 
@@ -38,9 +63,13 @@ const MenuHamburguesa = () => {
             },
           });
           guardarUsuarios(respuesta.data.data);
+          setAuth((prevAuth) => ({
+            ...prevAuth,
+            auth: true,
+            rol: respuesta.data.data.roles,
+          }));
         } catch (error) {
-          console.log(error);
-          if (error.response.status === 401) {
+          if (error.response?.status === 401) {
             navigate("/");
           }
         }
@@ -66,28 +95,16 @@ const MenuHamburguesa = () => {
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </button>
               <div className="flex pl-4 sm:pl-8 md:mr-24">
-                <span className="self-center text-2xl   font-semibold sm:text-2xl whitespace-nowrap text-white">
-                  Bienvenido{" "}
-                  <span className="font-bold text-secundario">
-                    {usuarios.nombre}
+                <NavLink to="/dashboard">
+                  <span className="self-center text-2xl   font-semibold sm:text-2xl whitespace-nowrap text-white">
+                    Bienvenido{" "}
+                    <span className="font-bold text-secundario">
+                      {usuarios.nombre}
+                    </span>
                   </span>
-                </span>
+                </NavLink>
               </div>
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-10 h-8 pr-3 text-white cursor-pointer "
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-              />
-            </svg>
           </div>
         </div>
       </nav>
@@ -100,7 +117,7 @@ const MenuHamburguesa = () => {
         } top-0 left-0 z-40 w-68 h-screen pt-20 transition-transform -translate-x-full border-r border-principal sm:translate-x-0 bg-principal`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 pb-4 overflow-y-auto bg-principal">
+        <div className="h-full px-3  overflow-y-auto bg-principal">
           <ul className="space-y-2 font-medium">
             <li>
               <NavLink
@@ -115,13 +132,13 @@ const MenuHamburguesa = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   className="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
                   />
                 </svg>

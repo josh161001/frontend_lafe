@@ -64,7 +64,7 @@ const MenuCategoriasDrop = ({ name, options }) => {
               className={({ isActive }) =>
                 `flex items-center w-full ${
                   isActive ? "bg-secundario" : ""
-                } p-2 transition duration-75 rounded-lg pl-11 group hover:bg-secundario text-white`
+                } p-2 transition duration-75 rounded-lg pl-11 group hover:bg-secundario text-sm text-white`
               }
             >
               {option.name}

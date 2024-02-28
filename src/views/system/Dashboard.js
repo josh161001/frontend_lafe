@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import MenuHamburguesa from "../../components/layout/system/MenuHamburguesa";
+import { LaFeContext } from "../../context/LaFeContext";
 
 const Dashboard = () => {
+  const [auth, guardarAuth] = useContext(LaFeContext);
+
+  // console.log(auth);
   return (
     <>
       <MenuHamburguesa />
