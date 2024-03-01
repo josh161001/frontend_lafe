@@ -10,6 +10,7 @@ import MenuCategoriasDrop from "../../common/MenuCategoriasDrop";
 import MenuAsistenciasDrop from "../../common/MenuAsistenciasDrop";
 import { NavLink, useNavigate } from "react-router-dom";
 import url_axios from "../../../config/Axios";
+import iconCafe from "../../../assets/img/icon-cafe.jpg";
 
 const MenuHamburguesa = () => {
   const [auth, setAuth] = useContext(LaFeContext);
@@ -105,6 +106,11 @@ const MenuHamburguesa = () => {
                 </NavLink>
               </div>
             </div>
+            <img
+              src={iconCafe}
+              className="h-12 w-12 rounded-full"
+              alt="icon imagen de la empresa"
+            />
           </div>
         </div>
       </nav>
