@@ -11,7 +11,7 @@ const Usuarios = () => {
         <div className="p-4 rounded-lg mt-12 sm:mt-12">
           <div className="flex  items-center mb-4">
             <h2 className="text-2xl p-4 font-semibold  text-gray-900 ">
-              Usuarios <span className="text-principal font-bold">Lafé</span>
+              Usuarios <span className="text-principal"> la FÉ</span>
             </h2>
           </div>
           <TablaUsuarios />
