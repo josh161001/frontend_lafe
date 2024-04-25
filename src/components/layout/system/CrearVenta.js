@@ -9,7 +9,6 @@ const CrearVenta = () => {
   const [auth, setAuth] = useContext(LaFeContext);
   const [filtroCategoria, setFiltroCategoria] = useState("");
   const [filtroNombre, setFiltroNombre] = useState("");
-  const [total, setTotal] = useState(0);
   const [venta, setVenta] = useState({
     fecha_venta: new Date(),
     total_venta: 0,
@@ -17,8 +16,6 @@ const CrearVenta = () => {
   });
 
   const navigate = useNavigate();
-
-  console.log("ventas", venta);
 
   useEffect(() => {
     const consultarProductos = async () => {
@@ -96,7 +93,7 @@ const CrearVenta = () => {
     // Buscar el producto en el estado productos
     const updatedProductos = {
       ...productos,
-      [producto.category.nombre]: productos[producto.category.nombre].map(
+      [producto.category?.nombre]: productos[producto.category?.nombre].map(
         (prod) =>
           prod.id === producto.id
             ? { ...prod, cantidad_producto: prod.cantidad_producto + 1 }
@@ -251,14 +248,19 @@ const CrearVenta = () => {
             const producto = filtrarProductos.find(
               (producto) => producto.id === ventaProducto.producto_id
             );
-            return (
-              <p className="p-2 bg-secundario" key={index}>
-                {producto.nombre} <span>x {ventaProducto.cantidad}</span> ={" "}
-                <span className="font-bold">
-                  ${producto.precio_venta * ventaProducto.cantidad}
-                </span>
-              </p>
-            );
+
+            if (producto) {
+              return (
+                <p className="p-2 bg-secundario" key={index}>
+                  {producto.nombre} <span>x {ventaProducto.cantidad}</span> ={" "}
+                  <span className="font-bold">
+                    ${producto.precio_venta * ventaProducto.cantidad}
+                  </span>
+                </p>
+              );
+            } else {
+              return null;
+            }
           })}
 
           <div>
@@ -273,7 +275,7 @@ const CrearVenta = () => {
             {venta.total_venta > 0 ? (
               <input
                 type="submit"
-                className="bg-secundario hover:bg-principal text-white font-bold py-2 px-4 rounded"
+                className="bg-principal text-white cursor-pointer font-bold py-2 px-4 rounded"
                 value="Realizar venta"
               />
             ) : null}

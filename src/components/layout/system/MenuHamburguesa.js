@@ -24,7 +24,13 @@ const MenuHamburguesa = () => {
     },
   ];
 
-  const ventasDrop = [{ name: "Ventas", to: "/Ventas" }];
+  const ventasDrop = [
+    { name: "Ventas", to: "/Ventas" },
+    {
+      name: "Agregar Venta",
+      to: "/agregar-venta",
+    },
+  ];
   const productosDrop = [
     { name: "Productos", to: "/productos" },
     {

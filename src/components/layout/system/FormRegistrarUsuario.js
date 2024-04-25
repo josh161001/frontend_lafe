@@ -85,7 +85,6 @@ const FormRegistrarUsuario = () => {
       navigate("/");
     }
   };
-
   if (!auth.rol.includes("ADMIN") || !auth === true) {
     return (
       <>

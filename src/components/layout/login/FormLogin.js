@@ -86,7 +86,7 @@ const FormLogin = () => {
         <label className="mb-2 block text-xs font-semibold">Contraseña</label>
         <input
           name="contraseña"
-          type="contraseña"
+          type="password"
           placeholder="*****"
           className="block w-full rounded-md border border-gray-300 focus:border-principal focus:outline-none focus:ring-1 focus:ring-principal py-1 px-1.5 text-gray-500"
           onChange={credencialesUsuarioState}

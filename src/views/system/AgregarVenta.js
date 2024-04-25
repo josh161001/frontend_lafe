@@ -1,12 +1,7 @@
-import React, { useContext } from "react";
+import CrearVenta from "../../components/layout/system/CrearVenta";
 import MenuHamburguesa from "../../components/layout/system/MenuHamburguesa";
-import { LaFeContext } from "../../context/LaFeContext";
-import DashboardTablas from "../../components/layout/system/DashboardTablas";
 
-const Dashboard = () => {
-  const [auth, guardarAuth] = useContext(LaFeContext);
-
-  // console.log(auth);
+const AgregarVenta = () => {
   return (
     <>
       <MenuHamburguesa />
@@ -15,11 +10,11 @@ const Dashboard = () => {
         <div className="p-4 rounded-lg mt-12 sm:mt-12">
           <div className="flex  items-center mb-4">
             <h2 className="text-2xl p-4 font-semibold  text-gray-900 ">
-              Dashboard <span className="text-principal">Lafé</span>
+              Nueva venta <span className="text-principal">La fé</span>
             </h2>
           </div>
           <div className="relative overflow-x-auto sm:rounded-lg">
-            <DashboardTablas />
+            <CrearVenta />
           </div>
         </div>
       </div>
@@ -27,4 +22,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default AgregarVenta;

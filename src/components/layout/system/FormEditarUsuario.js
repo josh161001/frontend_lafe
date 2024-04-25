@@ -189,6 +189,7 @@ const FormEditarUsuario = () => {
           <input
             name="contraseña"
             type="password"
+            value={usuario.contraseña}
             placeholder="********"
             className="block w-full rounded-md border border-gray-300 focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde py-1 px-1.5 text-gray-500"
             onChange={usuarioState}

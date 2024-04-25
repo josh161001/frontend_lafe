@@ -16,6 +16,7 @@ import EditarCategoria from "../views/system/EditarCategoria";
 import AgregarProducto from "../views/system/AgregarProducto";
 import EditarProducto from "../views/system/EditarProducto";
 import AgregarAsistencia from "../views/system/AgregarAsistencia";
+import AgregarVenta from "../views/system/AgregarVenta";
 
 export const LaFeRouter = () => {
   const [auth, setAuth] = useContext(LaFeContext);
@@ -38,6 +39,7 @@ export const LaFeRouter = () => {
 
         {/* VENTAS */}
         <Route path="/ventas" element={<Ventas />} />
+        <Route path="/agregar-venta" element={<AgregarVenta />} />
 
         {/* PRODUCTOS */}
         <Route path="/productos" element={<Productos />} />

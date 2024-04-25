@@ -218,7 +218,7 @@ const FormEditarProducto = () => {
             validarProducto() ? "bg-secundario " : "bg-principal"
           }`}
         >
-          Registrar Producto
+          Editar Producto
         </button>
       </div>
     </form>
